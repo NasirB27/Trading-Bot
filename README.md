@@ -16,7 +16,7 @@ class USD (QCAlgorithm):
         self.SetEndDate(2022,10,27)
         
         # Add asset
-        self.symbol = self.AddEquity("USD/AUD", "USD/EUR", "USD/GBP", "USD/JPY", "USD/CAD", "USD/NZD", "USD/CHF", Resolution.Daily).Symbol
+        self.symbol = self.AddEquity("USD/AUD", "USD/EUR", "USD/GBP", "USD/JPY", "USD/CAD", "USD/NZD", "USD/CHF", "AUD/USD", "EUR/USD, "GBP/USD", "JPY/USD", "NZD/USD", "CHF/USD",  Resolution.Daily).Symbol
         
         # Lookback length for b/o (in days)
         self.lookback = 30
@@ -28,9 +28,9 @@ class USD (QCAlgorithm):
         self.initialStopRisk = 0.97
         self.trailingStopRisk = 0.90
         
-        # Schedule function 20 minutes after Tokyo market open
+        # Schedule function 20 minutes after Sydney market open
         self.Schedule.On(self.DateRules.Weekdays(self.symbol), \
-                        self.TimeRules.AfterTokyoMarketOpen(self.symbol, 20), \
+                        self.TimeRules.AfterSydneyMarketOpen(self.symbol, 20), \
                         Action(self.EveryMarketOpen))
 
 
