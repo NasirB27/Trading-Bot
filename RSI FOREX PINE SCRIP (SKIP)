@@ -1,0 +1,19 @@
+//@version=5
+r = ta.rsi (close, 14) // 14 days rsi  
+//Step One: Initial Setting
+strategy("RSI strategy", overlay = true, default_qty_type = strategy.percent_of_equity, currency = currency.USD, initial_capital = 1000, commission_type = strategy.commission.percent, commission_value = 0)   
+
+//Step Two: Parameter Setting 
+period = input(14)
+
+//Step Three: Plotting 
+plot(r, color = color.yellow) // Plot RSI
+hline(26, color = color.green, linestyle = hline.style_dashed, linewidth = 1)
+hline(74, color = color.red, linestyle = hline.style_dashed, linewidth = 1)
+
+//Step Four: Strategy Entry Entry and Strategy Close 
+//Strategy One
+if (r > 74 and r[1] > 74)
+    strategy.close(id = "rsi_one")
+if (r < 26 and r[1] < 26 )
+    strategy.close(id = "rsi_one") 
